@@ -1,24 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Canvas View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CanvasViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moN-mE-tWZ">
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="ft8-nP-Uc2">
+                                        <rect key="frame" x="50" y="30" width="60" height="64"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="excited" translatesAutoresizingMaskIntoConstraints="NO" id="3eq-jP-b54">
+                                        <rect key="frame" x="157" y="32" width="60" height="60"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="wink" translatesAutoresizingMaskIntoConstraints="NO" id="eQq-zX-6Ao">
+                                        <rect key="frame" x="265" y="32" width="60" height="60"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="SGD-A8-haI">
+                                        <rect key="frame" x="50" y="114" width="60" height="60"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="tongue" translatesAutoresizingMaskIntoConstraints="NO" id="OnQ-GA-cZ3">
+                                        <rect key="frame" x="157" y="114" width="60" height="60"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-Bs-5xa">
+                                        <rect key="frame" x="177.5" y="10" width="20" height="14"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="dead" translatesAutoresizingMaskIntoConstraints="NO" id="QLi-f8-WDM">
+                                        <rect key="frame" x="265" y="114" width="60" height="60"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SGD-A8-haI" firstAttribute="top" secondItem="ft8-nP-Uc2" secondAttribute="bottom" constant="20" id="4QG-mS-Fvg"/>
+                                    <constraint firstItem="OnQ-GA-cZ3" firstAttribute="centerX" secondItem="3eq-jP-b54" secondAttribute="centerX" id="5Ih-mD-eO8"/>
+                                    <constraint firstItem="nIQ-Bs-5xa" firstAttribute="top" secondItem="moN-mE-tWZ" secondAttribute="top" constant="10" id="8gd-Z5-EcT"/>
+                                    <constraint firstItem="3eq-jP-b54" firstAttribute="top" secondItem="nIQ-Bs-5xa" secondAttribute="bottom" constant="8" symbolic="YES" id="9Zs-KU-8Ix"/>
+                                    <constraint firstItem="ft8-nP-Uc2" firstAttribute="leading" secondItem="moN-mE-tWZ" secondAttribute="leading" constant="50" id="9xO-ZR-yv2"/>
+                                    <constraint firstAttribute="height" constant="200" id="ALm-x7-ibJ"/>
+                                    <constraint firstItem="QLi-f8-WDM" firstAttribute="centerX" secondItem="eQq-zX-6Ao" secondAttribute="centerX" id="B93-mv-PEI"/>
+                                    <constraint firstItem="ft8-nP-Uc2" firstAttribute="top" secondItem="moN-mE-tWZ" secondAttribute="top" constant="30" id="C3Q-dz-r4X"/>
+                                    <constraint firstItem="OnQ-GA-cZ3" firstAttribute="centerY" secondItem="QLi-f8-WDM" secondAttribute="centerY" id="G25-8H-OFA"/>
+                                    <constraint firstItem="nIQ-Bs-5xa" firstAttribute="centerX" secondItem="moN-mE-tWZ" secondAttribute="centerX" id="KQT-oh-SNo"/>
+                                    <constraint firstItem="SGD-A8-haI" firstAttribute="centerX" secondItem="ft8-nP-Uc2" secondAttribute="centerX" id="Pfe-kz-pR7"/>
+                                    <constraint firstItem="3eq-jP-b54" firstAttribute="centerY" secondItem="eQq-zX-6Ao" secondAttribute="centerY" id="UFc-6w-Brf"/>
+                                    <constraint firstItem="eQq-zX-6Ao" firstAttribute="leading" secondItem="3eq-jP-b54" secondAttribute="trailing" constant="48" id="ZSd-xe-p5e"/>
+                                    <constraint firstItem="ft8-nP-Uc2" firstAttribute="centerY" secondItem="3eq-jP-b54" secondAttribute="centerY" id="evL-n5-lfC"/>
+                                    <constraint firstAttribute="trailing" secondItem="eQq-zX-6Ao" secondAttribute="trailing" constant="50" id="g8G-kB-HvB"/>
+                                    <constraint firstItem="SGD-A8-haI" firstAttribute="centerY" secondItem="OnQ-GA-cZ3" secondAttribute="centerY" id="pyb-fd-SeO"/>
+                                    <constraint firstItem="3eq-jP-b54" firstAttribute="leading" secondItem="ft8-nP-Uc2" secondAttribute="trailing" constant="47" id="qwX-NA-3uL"/>
+                                    <constraint firstItem="SGD-A8-haI" firstAttribute="leading" secondItem="moN-mE-tWZ" secondAttribute="leading" constant="50" id="vqP-Wr-L8U"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="moN-mE-tWZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qyP-YZ-e0H"/>
+                            <constraint firstItem="moN-mE-tWZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rK1-aA-Vag"/>
+                            <constraint firstItem="moN-mE-tWZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ycA-5B-Lib"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="26.53673163418291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dead" width="60" height="60"/>
+        <image name="down_arrow" width="20" height="14"/>
+        <image name="excited" width="60" height="60"/>
+        <image name="happy" width="60" height="60"/>
+        <image name="sad" width="60" height="60"/>
+        <image name="tongue" width="60" height="60"/>
+        <image name="wink" width="60" height="60"/>
+    </resources>
 </document>
