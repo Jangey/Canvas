@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moN-mE-tWZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moN-mE-tWZ" userLabel="Tray View">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="ft8-nP-Uc2">
@@ -43,6 +43,7 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="SGD-A8-haI" firstAttribute="top" secondItem="ft8-nP-Uc2" secondAttribute="bottom" constant="20" id="4QG-mS-Fvg"/>
                                     <constraint firstItem="OnQ-GA-cZ3" firstAttribute="centerX" secondItem="3eq-jP-b54" secondAttribute="centerX" id="5Ih-mD-eO8"/>
@@ -63,6 +64,9 @@
                                     <constraint firstItem="3eq-jP-b54" firstAttribute="leading" secondItem="ft8-nP-Uc2" secondAttribute="trailing" constant="47" id="qwX-NA-3uL"/>
                                     <constraint firstItem="SGD-A8-haI" firstAttribute="leading" secondItem="moN-mE-tWZ" secondAttribute="leading" constant="50" id="vqP-Wr-L8U"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sjG-Ca-vbT" appends="YES" id="dkA-tD-hnA"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,8 +77,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="trayView" destination="moN-mE-tWZ" id="rz2-kr-a0X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="sjG-Ca-vbT">
+                    <connections>
+                        <action selector="didPanTray:" destination="BYZ-38-t0r" id="hpd-Hb-y9t"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="26.53673163418291"/>
         </scene>
