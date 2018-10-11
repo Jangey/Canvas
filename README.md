@@ -2,22 +2,22 @@
 
 **Canvas** is an app that allows users to use gestures in order to create fun pictures using a variety of images.
 
-Time spent: **X** hours spent in total
+Time spent: **6** hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- [ ] Add and Configure View Elements (+1pt)
-- [ ] User can use a pan gesture to move the position of the tray (+1pt)
-- [ ] The tray will continue to the up or down position based on the direction the user was last panning (+1pt)
-- [ ] User can use a pan gesture to drag faces from the image tray to the canvas (+1pt)
-- [ ] User can pan faces on the canvas (+1pt)
+- [x] Add and Configure View Elements (+1pt)
+- [x] User can use a pan gesture to move the position of the tray (+1pt)
+- [x] The tray will continue to the up or down position based on the direction the user was last panning (+1pt)
+- [x] User can use a pan gesture to drag faces from the image tray to the canvas (+1pt)
+- [x] User can pan faces on the canvas (+1pt)
 
 The following **stretch** user stories are implemented:
 
-- [ ] Tray bounces when returning to it's up or down positions (+1pt)
-- [ ] User sees as new face scale up and back down to simulate a "picking up and dropping" appearance (+1pt)
+- [x] Tray bounces when returning to it's up or down positions (+1pt)
+- [x] User sees as new face scale up and back down to simulate a "picking up and dropping" appearance (+1pt)
 - [ ] User can use a pinch gesture to scale faces up or down (+1pt)
 - [ ] User can use a rotation gesture to rotate the position of faces on the canvas (+1pt)
 - [ ] User sees the tray arrow adjust to point up or down in relation to the position of the tray (+1pt)
