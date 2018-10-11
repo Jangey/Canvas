@@ -82,12 +82,50 @@ class CanvasViewController: UIViewController {
             newlyCreatedFace.center.y += trayView.frame.origin.y
             
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
+            
+            // add a UIPanGestureRecognizer to the newly created face
+            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanOriginalFace(sender:)))
+            newlyCreatedFace.isUserInteractionEnabled = true
+            newlyCreatedFace.addGestureRecognizer(panGestureRecognizer)
 
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
             
-        } else if sender.state == .ended {
+            // the animate when moving the face
+            UIView.animate(withDuration: 0.2) {
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+            }
             
+        } else if sender.state == .ended {
+            // ending Spring animation
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: nil)
+        }
+    }
+    
+    @objc func didPanOriginalFace(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        
+        if sender.state == .began {
+            print("Gesture began")
+            newlyCreatedFace = sender.view as? UIImageView // to get the face that we panned on.
+            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
+        } else if sender.state == .changed {
+            print("Gesture is changing")
+            newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+            
+            // the animate when moving the face
+            UIView.animate(withDuration: 0.2) {
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+            }
+        } else if sender.state == .ended {
+            print("Gesture ended")
+            
+            // ending Spring animation
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: nil)
         }
     }
     
