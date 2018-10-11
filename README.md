@@ -27,8 +27,7 @@ The following **stretch** user stories are implemented:
 - [ ] App tray features custom images (different from the supplied image assets) (+1pt)
 - [ ] User can choose between different canvas backgrounds (+1pt)
 - [ ] User can can swipe horizontally in the image tray to access more images (+1pt)
-- User can snap a photo to create...
-- [ ] a custom canvas background (1pt)
+- [ ] User can snap a photo to create a custom canvas background (1pt)
 - [ ] custom images in the image tray (1pt)
 - [ ] User can double tab the canvas to "reset" the Canvas (1pt)
 - [ ] User can triple tap an image on the canvas to see a custom animation sequence (1pt)
