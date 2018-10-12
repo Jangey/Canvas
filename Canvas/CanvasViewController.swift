@@ -61,7 +61,6 @@ class CanvasViewController: UIViewController {
                                 self.trayView.center = self.trayUp
                                 self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(2*Double.pi))
                 }, completion: nil)
-                //arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
             }
         }
     }
@@ -105,6 +104,7 @@ class CanvasViewController: UIViewController {
 
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+
             
             // the animate when moving the face
             UIView.animate(withDuration: 0.2) {
@@ -112,10 +112,16 @@ class CanvasViewController: UIViewController {
             }
             
         } else if sender.state == .ended {
+            // check if the face is inside teh tray will be remove.
+            if (self.newlyCreatedFace.frame.height + self.newlyCreatedFace.frame.origin.y) >= trayView.frame.origin.y {
+                self.newlyCreatedFace.removeFromSuperview()
+            } else {
             // ending Spring animation
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
                 self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: nil)
+                
+            }
         }
     }
     
