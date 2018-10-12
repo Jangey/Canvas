@@ -23,6 +23,10 @@ class CanvasViewController: UIViewController {
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     
+    // Tray arrow
+    @IBOutlet weak var arrow: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -48,13 +52,17 @@ class CanvasViewController: UIViewController {
                 UIView.animate(withDuration:0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayDown
+                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
                 }, completion: nil)
+                
             } else {
                 // trayView going up when pull up
                 UIView.animate(withDuration:0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayUp
+                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(2*M_PI))
                 }, completion: nil)
+                //arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
             }
         }
     }
@@ -143,7 +151,8 @@ class CanvasViewController: UIViewController {
         } else if sender.state == .changed {
             newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
         } else if sender.state == .ended {
-            newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
+            //newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
+            sender.scale = 1
         }
     }
     
@@ -156,6 +165,7 @@ class CanvasViewController: UIViewController {
         } else if sender.state == .changed {
             newlyCreatedFace.transform = CGAffineTransform(rotationAngle: rotation)
         } else if sender.state == .ended {
+            sender.rotation = 0
         }
     }
 }
