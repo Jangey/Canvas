@@ -26,7 +26,6 @@ class CanvasViewController: UIViewController {
     // Tray arrow
     @IBOutlet weak var arrow: UIImageView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,7 +51,7 @@ class CanvasViewController: UIViewController {
                 UIView.animate(withDuration:0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayDown
-                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 }, completion: nil)
                 
             } else {
@@ -60,7 +59,7 @@ class CanvasViewController: UIViewController {
                 UIView.animate(withDuration:0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayUp
-                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(2*M_PI))
+                                self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(2*Double.pi))
                 }, completion: nil)
                 //arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
             }
@@ -128,45 +127,22 @@ class CanvasViewController: UIViewController {
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
-            
-            // the animate when moving the face
-            UIView.animate(withDuration: 0.2) {
-                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
-            }
         } else if sender.state == .ended {
-            // ending Spring animation
-            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
-                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }, completion: nil)
         }
     }
     
-    
     @objc func didPinchOriginalFace(sender: UIPinchGestureRecognizer) {
         let scale = sender.scale
-
-        if sender.state == .began {
-            newlyCreatedFace = sender.view as? UIImageView
-            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
-        } else if sender.state == .changed {
-            newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
-        } else if sender.state == .ended {
-            //newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
-            sender.scale = 1
-        }
+        let imageView = sender.view as! UIImageView
+        imageView.transform = imageView.transform.scaledBy(x: scale, y: scale)
+        sender.scale = 1
     }
     
     @objc func didRotationOriginalFace(sender: UIRotationGestureRecognizer) {
         let rotation = sender.rotation
-        
-        if sender.state == .began {
-            newlyCreatedFace = sender.view as? UIImageView
-            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
-        } else if sender.state == .changed {
-            newlyCreatedFace.transform = CGAffineTransform(rotationAngle: rotation)
-        } else if sender.state == .ended {
-            sender.rotation = 0
-        }
+        let imageView = sender.view as! UIImageView
+        imageView.transform = imageView.transform.rotated(by: rotation)
+        sender.rotation = 0
     }
 }
 
