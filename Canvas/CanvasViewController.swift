@@ -59,7 +59,7 @@ class CanvasViewController: UIViewController {
         }
     }
     
-    // Pan for happy face
+    // Pan for face
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
         
         let translation = sender.translation(in: view)
@@ -87,6 +87,10 @@ class CanvasViewController: UIViewController {
             let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanOriginalFace(sender:)))
             newlyCreatedFace.isUserInteractionEnabled = true
             newlyCreatedFace.addGestureRecognizer(panGestureRecognizer)
+            
+            // add a UIPinchGestreRecognizer to the newly created face
+            let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didPinchOriginalFace(sender:)))
+            newlyCreatedFace.addGestureRecognizer(pinchGestureRecognizer)
 
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
@@ -99,7 +103,7 @@ class CanvasViewController: UIViewController {
         } else if sender.state == .ended {
             // ending Spring animation
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
-                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: nil)
         }
     }
@@ -108,11 +112,9 @@ class CanvasViewController: UIViewController {
         let translation = sender.translation(in: view)
         
         if sender.state == .began {
-            print("Gesture began")
             newlyCreatedFace = sender.view as? UIImageView // to get the face that we panned on.
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
         } else if sender.state == .changed {
-            print("Gesture is changing")
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
             
             // the animate when moving the face
@@ -120,15 +122,26 @@ class CanvasViewController: UIViewController {
                 self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
             }
         } else if sender.state == .ended {
-            print("Gesture ended")
-            
             // ending Spring animation
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
-                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: nil)
         }
     }
     
+    
+    @objc func didPinchOriginalFace(sender: UIPinchGestureRecognizer) {
+        let scale = sender.scale
+        
+        if sender.state == .began {
+            newlyCreatedFace = sender.view as? UIImageView
+            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
+        } else if sender.state == .changed {
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
+        } else if sender.state == .ended {
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
     
 }
 
