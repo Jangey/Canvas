@@ -86,12 +86,11 @@ class CanvasViewController: UIViewController {
             
             //Since the original face is in the tray, but the new face is in the main view, you have to offset the coordinates.
             newlyCreatedFace.center.y += trayView.frame.origin.y
-            
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
             
+            newlyCreatedFace.isUserInteractionEnabled = true
             // add a UIPanGestureRecognizer to the newly created face
             let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanOriginalFace(sender:)))
-            newlyCreatedFace.isUserInteractionEnabled = true
             newlyCreatedFace.addGestureRecognizer(panGestureRecognizer)
             
             // add a UIPinchGestreRecognizer to the newly created face
@@ -101,6 +100,11 @@ class CanvasViewController: UIViewController {
             // add a UIRotationGestreRecognizer to the newly created face
             let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(didRotationOriginalFace(sender:)))
             newlyCreatedFace.addGestureRecognizer(rotationGestureRecognizer)
+            
+            // add double tap to remove face
+            let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDouleTapFace(sender:)))
+            doubleTapRecognizer.numberOfTapsRequired = 2
+            newlyCreatedFace.addGestureRecognizer(doubleTapRecognizer)
 
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
@@ -149,6 +153,17 @@ class CanvasViewController: UIViewController {
         let imageView = sender.view as! UIImageView
         imageView.transform = imageView.transform.rotated(by: rotation)
         sender.rotation = 0
+    }
+    
+    @objc func didDouleTapFace(sender: UITapGestureRecognizer) {
+        // add spring remove animate
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+            self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        }, completion: { finished in
+            if finished {
+                sender.view?.removeFromSuperview()
+            }
+        })
     }
 }
 
