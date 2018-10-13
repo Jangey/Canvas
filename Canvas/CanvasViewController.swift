@@ -44,7 +44,12 @@ class CanvasViewController: UIViewController {
         if sender.state == .began {
             trayOriginalCenter = trayView.center
         } else if sender.state == .changed {
-            trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            if (trayOriginalCenter == trayUp) && (velocity.y < 0) {
+                // if trayview is open position, the user attempts to drag the tray above, adding frictional drag  "10x slower"
+                trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + (translation.y/10))
+            } else {
+                trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            }
         } else if sender.state == .ended {
             if velocity.y > 0 {
                 // trayView going down when push down
