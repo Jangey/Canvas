@@ -158,7 +158,7 @@ class CanvasViewController: UIViewController {
     @objc func didDouleTapFace(sender: UITapGestureRecognizer) {
         // add spring remove animate
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1, options: [], animations: { () -> Void in
-            self.newlyCreatedFace.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            sender.view?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         }, completion: { finished in
             if finished {
                 sender.view?.removeFromSuperview()
